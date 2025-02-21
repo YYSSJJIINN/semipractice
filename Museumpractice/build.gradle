@@ -12,6 +12,38 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+
+    /* 설명. Spring Framework(Legacy) 수업을 위한 의존성 5개 */
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation 'org.springframework:spring-core:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    implementation 'org.springframework:spring-context:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    implementation 'org.springframework:spring-beans:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-expression
+    implementation 'org.springframework:spring-expression:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-aop
+    implementation 'org.springframework:spring-aop:6.2.3'
+
+    /* section02/subsection04/resource에서 사용하는 Jakarta Annotation API 의존성*/
+    // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
+    /* section02/subsection05/inject에서 사용하는 Jakarta Inject API 의존성 */
+    // https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api
+    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-web
+    implementation 'org.springframework:spring-web:6.2.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 }
 
 test {

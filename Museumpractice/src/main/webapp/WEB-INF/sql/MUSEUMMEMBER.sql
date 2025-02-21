@@ -22,6 +22,16 @@ CREATE TABLE reservations (
                               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE exhibitions (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             title VARCHAR(255) NOT NULL,
+                             content TEXT NOT NULL,
+                             created_by INT NOT NULL,
+                             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                             FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
 INSERT INTO users (username, email) VALUES ('test_user', 'test@example.com');
 
 ALTER TABLE users MODIFY COLUMN role ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER';
@@ -32,3 +42,4 @@ ALTER TABLE users MODIFY COLUMN role ENUM('LOCAL', 'FOREIGN', 'ADMIN') NOT NULL;
 
 UPDATE users SET role = 'LOCAL' WHERE role = 'USER';
 
+COMMIT;
