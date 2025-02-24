@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입:회원유형선택:국립중앙박물관</title>
+    <style>
+        /* 회원가입 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        /* 회원가입 */
+        .breadcrumb {
+            margin: 20px;
+            font-size: 14px;
+        }
+        /* 회원가입 */
+        .breadcrumb a {
+            text-decoration: none;
+            color: #3F0B9F;
+        }
+        /* 회원가입 */
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        /* 회원가입 */
+        .title {
+            text-align: left;
+            margin-left: 20px;
+        }
+        /* 회원가입 */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        /* 회원가입 */
+        .category {
+            border: 2px solid black;
+            padding: 20px;
+            width: 200px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* 회원가입 */
+        .category img {
+            width: 80px;
+            height: 80px;
+        }
+        /* 회원가입 */
+        .button {
+            background-color: white;
+            color: #3F0B9F;
+            padding: 10px 20px;
+            border: none;
+            border-bottom: 2px solid #3F0B9F;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        /* 회원가입 */
+        .button:hover {
+            background-color: #3F0B9F;
+            color: white;
+        }
+
+        /*footer*/
+        footer{max-width:1440px; padding:0 15px; margin:0 auto;}
+        .footer-menu {border-top:1px solid #c8c8c8; padding:75px 0 60px 0}
+        .footer-menu .foot-1depth > li{float:left; width:12%; word-break: keep-all}
+        .footer-menu .foot-1depth > li > a{display:inline-block; margin-bottom:20px; font-size:20px; color:#000; font-family:'notokr-medium';}
+        .footer-menu .foot-1depth > li > a:hover, .footer-menu .foot-1depth > li > a:focus{text-decoration: underline}
+        .footer-menu .foot-1depth > li ul{}
+        .footer-menu .foot-1depth > li ul.foot-depth2 > li > a{display:inline-block; width:90%; margin-bottom:15px; letter-spacing: -0.25px; color:#666; font-size:15px;}
+        .footer-menu .foot-1depth > li ul.foot-depth2 > li > a.on{color:#3f0b9f; background: url(../images/common/ico/ico_sm_purple_close.png) no-repeat 98%;}
+        .footer-menu .foot-1depth > li ul.foot-depth2 > li > a:hover, .footer-menu .foot-1depth > li > .foot-sub-menu .foot-depth2 > li > a:focus{text-decoration: underline}
+        .footer-menu .foot-1depth:after{clear:both; display:block; overflow:hidden; content:""; height:0}
+        /*.footer-menu .foot-1depth > li.intro-link{width:17%}
+        .footer-menu .foot-1depth > li.last-link{float:right; width:11%}*/
+        .footer-menu .foot-1depth > li.last-link li a{display:inline-block; margin-bottom:20px; color:#000; font-size:18px; font-family:'notokr-medium';}
+        .footer-menu .foot-1depth .foot-depth3 {display:none; padding:15px 20px 0 20px; margin-bottom:15px; margin-left:-20px; width:80%; border-top:1px solid #ddd; border-bottom:1px solid #ddd; background: #f8f8f8;}
+        .footer-menu .foot-1depth .foot-depth3 > ul > li{margin-bottom:15px;}
+        .footer-menu .foot-1depth .foot-depth3 > ul > li a{font-size:14px; line-height:21px; color:#666666}
+        .footer-menu .foot-1depth .foot-depth3 > ul > li a:hover{text-decoration: underline; color:#3f0b9f}
+        .footer-menu .foot-1depth .foot-depth3 > ul > li a.on{text-decoration: underline; color:#3f0b9f}
+
+        /* 230406 footer 수정 */
+        .footer-menu .foot-1depth {display: flex; justify-content: space-between; flex-wrap: wrap;}
+        .footer-menu .foot-1depth > li {display: inline-block; flex: 0 auto;}
+        .relate-site {display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 30px;}
+        .relate-site li {display: inline-block; flex: 0 auto;}
+        .relate-site li a {display: flex; align-items: center; color: #000; font-size: 18px; font-family: 'notokr-medium';}
+        .relate-site li a > img {width: auto; height: 18px; margin-left: 2px;}
+
+        /* 230802 footer 개편 */
+        .footer-menu .footer-1depth {display: flex; justify-content: space-between; flex-wrap: wrap;}
+        .footer-menu .footer-1depth > li {display: inline-block; flex: 0 auto; float:left; width:12%; word-break: keep-all}
+        .footer-menu .footer-1depth > li > a {display:inline-flex; align-items: center; margin-bottom:10px; font-size:20px; color:#000; font-family:'notokr-medium';}
+        .footer-menu .footer-1depth > li > a:hover,
+        .footer-menu .footer-1depth > li > a:focus {text-decoration: underline; color: #3f0b9f;}
+        .footer-menu .footer-1depth > li > a > img {width: auto; height: 20px; margin-left:5px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 {padding-right: 10px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li {display: flex; flex-direction: column; flex-wrap: wrap;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu {display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a {display:inline-flex; align-items: center;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a:not(.menu-fold) {display:inline-block; margin:7px 0; letter-spacing: -0.25px; color:#666; font-size:15px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a:not(.menu-fold):hover, 
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a:not(.menu-fold):focus {text-decoration: underline; font-weight: bold; color: #3f0b9f;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a.menu-fold {text-indent:-9999px; transition: transform ease 0.3s; display: inline-block; cursor: pointer; width: 14px; height: 10px; flex-shrink: 0; background: url(../images/common/ico/arrow-right-ico2.png) no-repeat 98%; background-size: 14px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a.menu-fold.fold-rotate {transform: rotate(-180deg); transition: transform ease 0.3s;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li div.depth2-menu > a > img {width: auto; height: 15px; margin-left:5px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3 {display:none; margin-bottom: 10px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3.show {display:block;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3 > li > a {display: flex; margin:5px 0 5px 5px; letter-spacing: -0.25px; color:#666; font-size:14px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3 > li > a > span {display: flex; align-items: center; padding-left: 5px;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3 > li > a > span:hover, 
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3 > li > a > span:focus {text-decoration: underline; font-weight: bold; color: #3f0b9f;}
+        .footer-menu .footer-1depth > li ul.footer-depth2 > li ul.footer-depth3 > li > a > span > img {width: auto; height: 14px; margin-left:5px;}
+
+        .link-box-area{padding:55px 0; border-top:1px solid #e6e6e6;}
+        .link-box-area .link-box{float:left; width:25%;}
+        .link-box-area:after{clear:both; display:block; overflow:hidden; content:""; height:0}
+        .link-box-area .link-box > ul.ex-link > li a{display:inline-block; margin-bottom:20px; color:#000; font-size:18px; font-family:'notokr-medium';}
+        .link-box-area .link-box > ul.ex-link > li a:hover, .link-box-area .link-box > ul.ex-link > li a:focus {text-decoration: underline}
+        .link-box-area .link-box .familysite{display:inline-block; clear: both; margin-bottom:25px; position: relative}
+        .link-box-area .link-box .familysite .btn-site{display:block; font-size:16px; color:#000; position: relative;}
+        .link-box-area .link-box .familysite .btn-site > span{display:inline-block; padding:12px 92px 11px 0; margin-left:19px; border-bottom:2px solid #000;background: url(../images/common/ico/ico_lg_black_open.png) no-repeat 96%; background-size:22px 12px }/*20231019 12px 78px 12px 0 수정*/
+        .link-box-area .link-box .familysite .btn-site.on{ color:#fff; border-bottom:1px solid #e6e6e6; background:#000 url(../images/common/ico/ico_down_white_img.png) no-repeat 90%; background-size:22px 12px}
+        .link-box-area .link-box .familysite .btn-site.on > span{padding:12px 92px 11px 0; }
+        .link-box-area .link-box .familysite.guideBook .btn-site > span{padding:12px 92px 12px 0;}
+        .link-box-area .link-box .familysite.guideBook .btn-site.on > span{padding:12px 108px 11px 0; background:none}
+        .link-box-area .link-box .foot-link li a{color:#444444; line-height:30px;}
+        .link-box-area .link-box .foot-link li a:hover, .link-box-area .link-box .foot-link li a:focus{text-decoration: underline}
+        .link-box-area .right-link-box{text-align:right; font-size:15px; color:#444; line-height:30px;}
+        .link-box-area .right-link-box .sns-link > ul > li{display:inline-block; margin-right:25px;}
+        .link-box-area .right-link-box .sns-link > ul > li:last-child{margin-right:0}
+        .link-box-area .right-link-box .sns-link img{width:33px; height:33px}
+        .link-box-area .right-link-box .address{margin-top:25px;}
+        .familysite .linkList{display:none; width:100%; box-sizing: border-box; position: absolute; bottom:48px; left:0; padding:35px 0; text-align:center; background: #000;}
+        .familysite .linkList > li {margin-bottom:15px;}
+        .familysite .linkList > li:last-child{margin-bottom: 0}
+        .familysite .linkList > li a{font-size:14px; color:#cccccc;  white-space: nowrap;}
+        .familysite .linkList > li a:hover{color:#ffcc33; text-decoration: underline}
+        .otherban{margin-top:20px;}
+        .otherban li{display:inline-block; margin-left:10px;}
+        .otherban li:first-child a img{width:81px; height:49px;}
+        .otherban li:last-child a img{width:95px; height:40px;}
+
+        /*추가 어린이 css*/
+        .m-child-web{display:none;}
+        .m-vcm-link{display:none;}
+
+        /*************************************************pc 1440*************************************************/
+        @media all and (min-width:992px) and (max-width:1440px) {
+        .footer-menu .foot-1depth > li{width:25%; min-height:390px;}
+        .footer-menu .foot-1depth > li.intro-link{width:25%;}
+        .footer-menu .foot-1depth > li.last-link{float:left; width:25%;}
+        .footer-menu .footer-1depth > li{width:23%; min-height:390px;}
+        .footer-menu .footer-1depth > li.intro-link{width:25%;}
+        .footer-menu .footer-1depth > li.last-link{float:left; width:25%;}
+        .link-box-area .link-box{width:50%; min-height:200px;}
+        .link-box-area .right-link-box{text-align:left;}
+        .gnb .r-link-list{top: 0;}
+        .relate-site {justify-content: flex-start;}
+        .relate-site li {width: 25%; margin-bottom: 20px;}
+        }
+
+        /*footer*/
+        footer{max-width:1440px; padding:0; margin:0 auto; border-top:2px solid #c8c8c8 }
+        footer .footer-wrap{padding:0 40px}
+        .footer-menu {border-top:0; padding:15px 0 0 0}
+        .footer-menu .foot-1depth > li{float:none; width:100%; margin-top:35px; display:none}
+        .footer-menu .foot-1depth > li > a{font-size:36px; margin-bottom:0}
+        .footer-menu .foot-1depth > li > a.on{color:#3f0b9f; border-bottom:1px solid #3f0b9f}
+        .footer-menu .foot-1depth > li ul{}
+        .footer-menu .foot-1depth > li ul > li{width:50%; float:left;}
+        .footer-menu .foot-1depth > li ul:after{clear: both; display:block; content:""; height:0; overflow: hidden}
+        .footer-menu .foot-1depth > li ul > li a{margin-bottom:15px; line-height:55px; letter-spacing: -0.25px; color:#000; font-size:26px;}
+        .footer-menu .foot-1depth:after{clear:both; display:block; overflow:hidden; content:""; height:0}
+        .footer-menu .foot-1depth > li.intro-link{width:100%;}
+        .footer-menu .foot-1depth > li.last-link{ display:block;float:none; width:100%; margin-top:0; padding:60px 0 30px 0; }
+        .footer-menu .foot-1depth > li.last-link li a{margin-bottom:30px; font-size:32px;}
+        /* 230802 footer 개편 */
+        .footer-menu .footer-1depth > li{float:none; width:100%; margin-top:35px; display:none}
+        .footer-menu .footer-1depth > li > a{font-size:36px; margin-bottom:0}
+        .footer-menu .footer-1depth > li > a.on{color:#3f0b9f; border-bottom:1px solid #3f0b9f}
+        .footer-menu .footer-1depth > li ul{}
+        .footer-menu .footer-1depth > li ul > li{width:50%; float:left;}
+        .footer-menu .footer-1depth > li ul:after{clear: both; display:block; content:""; height:0; overflow: hidden}
+        .footer-menu .footer-1depth > li ul > li a{margin-bottom:15px; line-height:55px; letter-spacing: -0.25px; color:#000; font-size:26px;}
+        .footer-menu .footer-1depth:after{clear:both; display:block; overflow:hidden; content:""; height:0}
+        .footer-menu .footer-1depth > li.intro-link{width:100%;}
+        .footer-menu .footer-1depth > li.last-link{ display:block;float:none; width:100%; margin-top:0; padding:60px 0 30px 0; }
+        .footer-menu .footer-1depth > li.last-link li a{margin-bottom:30px; font-size:32px;}
+        footer .foot-sub-menu{display:none; margin-top:30px;}
+        .link-box-area{padding:0; border-top:0;}
+        .link-box-area .link-box{float:none; width:100%;}
+        .link-box-area .link-box > ul.ex-link > li a{margin-bottom:35px;font-size:36px;}
+        .link-box-area .link-box .familysite{margin-bottom:0; display:block;}
+        .link-box-area .link-box .familysite .btn-site{ position: relative; box-sizing: border-box;display:block; width:100%; margin:0; font-size:36px; padding:30px 0 30px 0; background: url(../images/common/ico/ico_lg_black_open.png) no-repeat 98%; background-size:51px 29px; border-bottom: 2px solid #000; box-sizing: border-box;}
+        .link-box-area .link-box .familysite .btn-site > span{margin:0;border-bottom: 0; display:block;padding:0;background:none}
+        .link-box-area .link-box .familysite .btn-site.on {padding:30px 0 30px 0;  border-bottom: 2px solid #000; background:#000 url(../images/common/ico/ico_down_white_img.png) no-repeat 98%; background-size:51px 29px;}
+        .link-box-area .link-box .familysite .btn-site.on > span, .link-box-area .link-box .familysite.guideBook .btn-site > span, .link-box-area .link-box .familysite.guideBook .btn-site.on > span{padding:0}
+        .familysite .linkList{bottom:109px}
+        .familysite .linkList > li a{font-size:24px;}
+        .familysite .linkList > li{margin-bottom:25px}
+
+        .link-box-area .link-box .foot-link {display:none;}
+        .link-box-area .link-box .m-link-box{margin:70px 0; text-align:center; display:block;}
+        .link-box-area .link-box .m-foot-link:after{clear:both; display:block; overflow:hidden; content:""; height:0}
+        .link-box-area .link-box .m-foot-link li{float:left; width:33.3%}
+        .link-box-area .link-box .m-foot-link a{color:#444; font-size:3.22vw;}
+        .link-box-area .right-link-box{text-align:left; font-size:28px; line-height:48px;}
+        .link-box-area .right-link-box .sns-link{margin-top:80px; text-align:center;}
+        .link-box-area .right-link-box .sns-link img{height:51px;}
+        .link-box-area .right-link-box .sns-link > ul > li{margin-right:50px;}
+        .link-box-area .right-link-box .address{margin-top:0;}
+        .link-box-area .right-link-box .copyright{padding:30px 0 70px 0}
+
+        .otherban{width:60%; margin:0 auto 100px auto}
+        .otherban li{display:inline-block; margin-left:4%; width:47%; text-align:center}
+        .otherban li:first-child {margin-left:0}
+        .otherban li:first-child a img{width:auto; height:auto; max-width:100%; max-height:100%}
+        .otherban li:last-child a img{width:auto; height:auto;  max-width:100%; max-height:100%}
+
+        /*추가 어린이 css*/
+        .m-child-web{display:block;}
+        .pc-child-web{display:none;}
+        .m-vcm-link{display:block;}
+        .pc-vcm-link{display:none;}
+
+
+        /*footer*/
+        footer{border-top:1px solid #c8c8c8;}
+        footer .footer-wrap{padding:0 20px}
+        .footer-menu {padding:7px 0 0 0}
+        .footer-menu .foot-1depth > li{ margin-top:18px; }
+        .footer-menu .foot-1depth > li > a{font-size:18px;}
+        .footer-menu .foot-1depth > li ul > li a{margin-bottom:8px; line-height:28px; font-size:14px;}
+        .footer-menu .foot-1depth > li.last-link{padding:30px 0 15px 0}
+        .footer-menu .foot-1depth > li.last-link li a{margin-bottom:15px; font-size:18px;}
+        footer .foot-sub-menu{display:none; margin-top:15px;}
+        .link-box-area .link-box > ul.ex-link > li a{margin-bottom:18px; font-size:18px;}
+        .link-box-area .link-box .familysite .btn-site{font-size:18px; border-bottom:1px solid #000; padding:15px 0 15px 0; background: url(../images/common/ico/ico_lg_black_open.png) no-repeat 98%; background-size:25.5px 14.5px;}
+        .link-box-area .link-box .familysite .btn-site.on{padding:15px 0; background: #000 url(../images/common/ico/ico_down_white_img.png) no-repeat 98%; background-size:25.5px 14.5px;}
+        .familysite .linkList{bottom:56px; padding:15px 0}
+        .familysite .linkList > li{margin-bottom:12px;}
+        .familysite .linkList > li a{font-size:14px;}
+        .link-box-area .link-box .m-link-box{margin:35px 0;}
+        .link-box-area .link-box .m-foot-link a{font-size:4vw;}
+        .link-box-area .link-box .m-foot-link li{width:30%;}
+        .link-box-area .link-box .m-foot-link li:nth-child(1){width:40%;}
+        .link-box-area .right-link-box{text-align:left; font-size:15px; line-height:26px;}
+        .link-box-area .right-link-box .copyright{padding:15px 0 35px 0}
+        .link-box-area .right-link-box .sns-link{margin-top:40px; text-align:center;}
+        .link-box-area .right-link-box .sns-link img{height:26px;}
+        .link-box-area .right-link-box .sns-link > ul > li{margin-right:25px;}
+        .relate-site li a {font-size: 18px;}
+        .relate-site li a > img {height: 18px;}
+    </style>
+</head>
+<body>
+    <div class="breadcrumb">
+        <a href="index.html">홈</a> &gt; 
+        <a href="login.html">마이페이지</a> &gt; 
+        <span>회원가입</span>
+    </div>
+    <h1 class="title">회원가입</h1>
+    <div class="container">
+        <div class="category">
+            <img src="adult.png" alt="일반인 아이콘">
+            <h2>일반인</h2>
+            <h4>14세 이상 내국인</h4>
+            <button class="button" onclick="goToAgreement('adult')">신청하기</button>
+        </div>
+        <div class="category">
+            <img src="child.png" alt="어린이 아이콘">
+            <h2>어린이</h2>
+            <h4>14세 미만 내국인</h4>
+            <button class="button" onclick="goToAgreement('child')">신청하기</button>
+        </div>
+        <div class="category">
+            <img src="foreigner.png" alt="외국인 아이콘">
+            <h2>외국인</h2>
+            <h4>All ages</h4>
+            <button class="button" onclick="goToAgreement('foreigner')">신청하기</button>
+        </div>
+    </div>
+    
+    <script>
+        function goToAgreement(type) {
+            window.location.href = `agreement.html?type=${type}`;
+        }
+    </script>
+
+    <hr>
+
+    <footer>
+        <div class="footer-wrap">
+            <!--푸터 하단 메뉴-->
+            <div class="footer-menu">
+                <ul class="footer-1depth">
+                    <li><a href="https://www.museum.go.kr/site/main/content/tour_guidance">관람 정보</a>
+                        <ul class="footer-depth2">
+                            <li>
+                            <div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/tour_guidance">관람 안내</a></div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/exhibition_guide_link">전시 해설</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/content/exhibition_guide_link">- <span>전시 해설 안내</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/curator/list">- <span>전시 해설 예약</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/show/list/type1/curator">- <span>큐레이터와의 대화</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/tour_reservation">예약하기</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/reserve/child/intro">- <span>어린이박물관 관람 예약</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/reserve/realistic/list">- <span>VR체험 예약 (디지털 실감 영상관 2)</span></a></li>
+                                    <li><a href="https://modu.museum.go.kr/learn?locale=ko&amp;museum=1" target="_blank">- <span>교육 프로그램 예약<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/reserve/group/intro">- <span>학생 단체 관람 예약</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/curator/reservelist">- <span>전시 해설 예약</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/reserve/guide/intro">- <span>외부해설 예약</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/rent_services">- <span>시설 대관 예약</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/night_shuttle">- <span>야간개장 셔틀버스 예약</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/full_museum">관람·편의시설</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/content/full_museum">- <span>박물관 전체 안내</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/exhibit_space">- <span>전시 공간</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/major_facilities">- <span>주요 시설</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/outdoor_facilities">- <span>야외 시설</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/resting_place">- <span>식당, 편의시설</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/convenient_facilities_contact">- <span>편의시설 연락처</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/floor">- <span>층별 안내</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/accessibility">접근성 안내</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/subway">오시는 길</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/content/subway">- <span>지하철</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/bus1">- <span>버스</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/self_car">- <span>자기차량</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/parking">- <span>주차 안내</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="https://www.museum.go.kr/site/main/content/permanent_exhibition_guide">전시</a>
+                        <ul class="footer-depth2">
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/permanent_exhibition_guide">상설 전시</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/content/permanent_exhibition_guide">- <span>상설전시실 층별 안내</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/relic/recommendRoute/list?relicRecommendPk=PS01001001_57">- <span>추천 동선</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/760">- <span>선사·고대관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/759">- <span>중·근세관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/758">- <span>서화관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/755">- <span>기증관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/631120">- <span>사유의 방</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/757">- <span>조각·공예관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/756">- <span>세계문화관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/406012">- <span>역사의 길</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/showroom/list/outdoorRelic">- <span>야외 전시</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/exhiSpecialTheme/list/current">특별 전시</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/exhiSpecialTheme/list/current">- <span>현재 전시</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/exhiSpecialTheme/list/upcomming">- <span>예정 전시</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/exhiSpecialTheme/list/past">- <span>지난 전시</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/digital_realistic">디지털 실감 영상관</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic">- <span>디지털 실감 영상관 안내</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_1">- <span>실감1관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_2">- <span>실감2관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_3">- <span>실감3관</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_9">- <span>디지털 광개토대왕릉비</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_4">- <span>경천사 십층석탑</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_5">- <span>명품 실감</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_7">- <span>열린마당 실감 전광판</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_8">- <span>온라인 실감콘텐츠</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/content/digital_realistic_6">- <span>메타버스 박물관 '힐링 동산'</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/ogam">공간 오감</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/exhiOnline/list">온라인 전시관</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/exhiOversea/list/planning">우리문화유산 국외 전시</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/exhiProvincial/list">소속 국립박물관 전시</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/report/category/category_118">전시도록</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/exhiForeignMuseum/list/all">외국박물관 소장 한국문화유산</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/exhiForeignMuseum/list/1">- <span>미주</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/exhiForeignMuseum/list/2">- <span>유럽</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/exhiForeignMuseum/list/3">- <span>아시아</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://modu.museum.go.kr/?locale=ko" target="_blank">교육<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a>
+                        <ul class="footer-depth2">
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://modu.museum.go.kr/?locale=ko" target="_blank">일반교육(MODU)<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://academy.museum.go.kr/" target="_blank">전문교육(뮤지엄 아카데미)<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://www.museum.go.kr/site/main/show/list/type1/culture">문화행사</a>
+                        <ul class="footer-depth2">
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/show/list/type2/event">행사</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/show/list/type2/perform">공연</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://www.museum.go.kr/site/main/relic/recommend/list">소장품</a>
+                        <ul class="footer-depth2">
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/relic/recommend/list">큐레이터 추천 소장품</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/relic/search/collectionList">소장품 검색</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/relic/treasure/list">국보·보물 검색</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/relic/3DData/list">3D 데이터 검색</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/post/category/category_11804">수어 동영상</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/post/category/category_18737">음성 안내</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/reading_guide">소장품 열람·복제</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/domestic_loan">소장품 대여 안내</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/content/donation_guide_sub">문화유산 기증 안내</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/content/donation_guide_sub">- <span>기증안내</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/presentation/list">- <span>기증내역/사례</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://www.museum.go.kr/site/main/archive/academic/event">학술행사·출판</a>
+                        <ul class="footer-depth2">
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/academic/event">학술행사</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/periodical/category/category_18350">정기간행물</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/periodical/category/category_18350">- <span>간행물 검색</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_16914">- <span>기획특별전 전시보고서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/periodical/category/category_15235">- <span>논문 투고</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/post/category/category_66">고고학</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_66">- <span>조사 연구 현황</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_50">- <span>발굴 보고서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_104">- <span>연구 보고서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_69">- <span>학술 토론회 자료</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/post/category/category_67">역사학</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_67">- <span>조사 연구 현황</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_116">- <span>외규장각 의궤 총서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_114">- <span>연구 보고서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_84">- <span>학술 토론회 자료</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/post/category/category_77">미술사학</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_77">- <span>조사 연구 현황</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_106">- <span>한국서화도록</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_18955">- <span>한국도자도록</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_18956">- <span>불교미술연구 조사보고</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_108">- <span>연구 보고서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_74">- <span>학술 토론회 자료</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="depth2-menu">
+                                    <a href="https://www.museum.go.kr/site/main/archive/post/category/category_82">아시아학</a>
+                                    <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                </div>
+                                <ul class="footer-depth3">
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_82">- <span>조사 연구 현황</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_112">- <span>연구 보고서</span></a></li>
+                                    <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_80">- <span>학술 토론회 자료</span></a></li>
+                                </ul>
+                                </li>
+                                <li>
+                                    <div class="depth2-menu">
+                                        <a href="https://www.museum.go.kr/site/main/content/conservation_science_role">보존과학</a>
+                                        <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                    </div>
+                                    <ul class="footer-depth3">
+                                        <li>
+                                            <a href="https://www.museum.go.kr/site/main/content/conservation_science_role">- <span>역할</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/content/metal_conservation">- <span>분야</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_110">- <span>발간물</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="depth2-menu">
+                                            <a href="https://www.museum.go.kr/site/main/archive/report/category/category_19308">박물관 교육</a>
+                                            <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                        </div>
+                                        <ul class="footer-depth3">
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_19308">- <span>어린이 전시</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_19309">- <span>교육 연구</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_19310">- <span>교육 아카이브</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="depth2-menu">
+                                            <a href="https://www.museum.go.kr/site/main/archive/post/category/category_88">일제 강점기 조사 자료</a>
+                                            <a class="menu-fold" href="javascript:void(0);">펼치기</a>
+                                        </div>
+                                        <ul class="footer-depth3">
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_88">- <span>조사 연구 현황</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/content/japanese_gov_gen_korea">- <span>일제 강점기 자료 원문</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_124">- <span>조사 보고서</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_120">- <span>문서 자료집</span></a></li>
+                                            <li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_122">- <span>유리건판 자료집</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="depth2-menu">
+                                            <a href="https://www.museum.go.kr/site/main/archive/report/category/category_18716">이건희 기증품</a>
+                                        </div>
+                                    </li>
+                                    <li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/library_introduce">도서관</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/content/library_introduce">- <span>도서관 소개</span></a></li><li><a href="https://www.museum.go.kr/site/main/collections/search">- <span>소장도서 검색</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/archive/report/category/category_126">기타</a></div></li></ul></li><li><a href="https://www.museum.go.kr/site/main/archive/united/category/128">소식·참여</a><ul class="footer-depth2"><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/archive/united/category/128">소식</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/archive/united/category/128">- <span>알림</span></a></li><li><a href="https://www.museum.go.kr/site/main/announce/list">- <span>고시/공고</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_54">- <span>채용 안내</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_93">- <span>보도 자료</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/archive/united/category/147">영상</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/archive/united/category/147">- <span>영상 소식</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_16810">- <span>박물관의 특별한 초대</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/adult_volunteer">자원봉사 안내</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/content/adult_volunteer">- <span>성인 자원봉사 활동안내</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/student_volunteer">- <span>청소년 자원봉사 활동안내</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/mentornew" target="_blank">청년멘토<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></div></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/curator_certificate_schemes">학예사 자격증 안내</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/content/curator_certificate_schemes">- <span>학예사 자격증 제도 안내</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/career_accreditation">- <span>경력인정 대상기관 안내</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/related_laws">- <span>관계 법령 안내</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/online_complaint">전자 민원</a></div></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/open_Info_not_public">정보공개</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.open.go.kr/infOthbc/infOthbc/infOthbc.do" target="_blank">- <span>정보공개 제도 안내<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></span></a></li><li><a href="https://www.museum.go.kr/site/main/content/open_Info_not_public1">- <span>비공개 세부기준</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/info_disc_sys_handbook">- <span>정보공개 관련법 및 규정</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/standards_templates">- <span>관련 서식</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/info_disc_commission">- <span>정보공개 수수료</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/pre_info_published1">- <span>사전정보공표</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/public_lists_openapi">- <span>정보공개 자료</span></a></li><li><a href="https://www.open.go.kr/" target="_blank">- <span>정보공개 청구신청<img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></span></a></li><li><a href="https://www.museum.go.kr/site/main/content/public_data_applications">- <span>공공데이터 개방</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/archive/ebook/category/category_155">소식지</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/archive/ebook/category/category_155">- <span>박물관신문</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_96">- <span>큐레이터가 보내는 엽서</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/ebook/category/category_164">- <span>NMK Magazine</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/report/category/category_20243">- <span>아침 행복이 똑똑</span></a></li></ul></li></ul></li><li><a href="https://www.museum.go.kr/site/main/content/greetings">박물관 소개</a><ul class="footer-depth2"><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/greetings">인사말</a></div></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/major_plan">비전과 전략</a></div></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/history_1945">발자취</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/content/history_1945">- <span>1945~</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/history_1955">- <span>1955~</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/history_1972">- <span>1972~</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/history_1986">- <span>1986~</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/history_1996">- <span>1996~</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/history_2005">- <span>2005~</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/group/list">조직 및 업무</a></div></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/architectural_overview">시설 소개</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/content/architectural_overview">- <span>건축 개요</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/status_place">- <span>배치 현황</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/floor_details">- <span>층별 상세</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/facilities_overview">- <span>시설 개요</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/key_features">- <span>주요 특징</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/paintings_whole">수장고</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/content/paintings_whole">- <span>수장고 소개</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/storage_status">- <span>수장고 현황</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/archive/ebook/category/category_13849">박물관 관련 자료</a><a class="menu-fold" href="javascript:void(0);">펼치기</a></div><ul class="footer-depth3"><li><a href="https://www.museum.go.kr/site/main/archive/ebook/category/category_13849">- <span>연보</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_91">- <span>규정 등</span></a></li><li><a href="https://www.museum.go.kr/site/main/archive/post/category/category_90">- <span>법령자료실</span></a></li><li><a href="https://www.museum.go.kr/site/main/content/10years">- <span>박물관 기념사업</span></a></li></ul></li><li><div class="depth2-menu"><a href="https://www.museum.go.kr/site/main/content/relics_management_system">문화유산 표준관리시스템</a></div></li></ul>
+                </li>
+                </ul>
+                <ul class="relate-site">
+                    
+                    <li><a href="https://www.museum.go.kr/site/child/home" target="_blank">_ 어린이박물관 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                    <li><a href="https://modu.museum.go.kr/index?locale=ko" target="_blank">_ 교육플랫폼 모두 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                    <li><a href="https://www.museum.go.kr/curator" target="_blank">_ 학예사자격증 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                    <li><a href="http://www.emuseum.go.kr/" target="_blank">_ e뮤지엄 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                    <li><a href="https://www.museum.go.kr/uigwe/" target="_blank">_ 외규장각 의궤 원문 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                    
+                    <li><a href="http://webzine.museum.go.kr/" target="_blank">_ 박물관신문 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                    <li><a href="https://www.museumshop.or.kr/" target="_blank">_ 박물관상품관 <img src="./국립중앙박물관_files/ico_open_new_window.png" alt=""></a></li>
+                </ul>
+            </div>
+            <!--푸터 하단 메뉴-->
+            
+            <div class="link-box-area">
+                <div class="link-box">
+                    <ul class="ex-link">
+                        <li><a href="https://www.museum.go.kr/site/main/content/relics_management_system">문화유산표준관리시스템</a></li>
+                        
+                        <li class="pc-vcm-link"><a href="http://masterpieces.asemus.museum/index.nhn" target="_blank">VCM 가상명품박물관 </a></li>
+                        <li class="m-vcm-link"><a href="http://masterpieces.asemus.museum/index.nhn" target="_blank">VCM 가상명품박물관 </a></li>
+                    </ul>
+                </div>
+                <div class="link-box">
+                   <div class="familysite">
+                     <a href="https://www.museum.go.kr/site/main/home#" class="btn-site" title="닫힘"><span>관련사이트 바로가기</span></a>
+                     <ul class="linkList">
+                         <li><a href="http://www.nmf.or.kr/" target="_blank" title="새창으로 열림">국립박물관 문화재단</a></li>
+                         <li><a href="http://www.fnmk.org/" target="_blank" title="새창으로 열림">국립중앙박물관회</a></li>
+                         <li><a href="http://www.museum.or.kr/" target="_blank" title="새창으로 열림">사단법인 한국박물관협회</a></li>
+                         <!-- <li><a href="https://www.museum.go.kr/uigwe/" target="_blank" title="새창으로 열림">외규장각 의궤 원문</a></li> -->
+                     </ul>
+                   </div>
+                   
+                   <div class="familysite">
+                     <a href="https://www.museum.go.kr/site/main/home#" class="btn-site" title="닫힘"><span>소속박물관 바로가기</span></a>
+                     <ul class="linkList">
+                         <li><a href="http://gyeongju.museum.go.kr/" target="_blank" title="새창으로 열림">국립경주박물관</a></li>
+                         <li><a href="https://gwangju.museum.go.kr/" target="_blank" title="새창으로 열림">국립광주박물관</a></li>
+                         <li><a href="http://jeonju.museum.go.kr/" target="_blank" title="새창으로 열림">국립전주박물관</a></li>
+                         <li><a href="http://daegu.museum.go.kr/" target="_blank" title="새창으로 열림">국립대구박물관</a></li>
+                         <li><a href="http://buyeo.museum.go.kr/" target="_blank" title="새창으로 열림">국립부여박물관</a></li>
+                         <li><a href="http://gongju.museum.go.kr/" target="_blank" title="새창으로 열림">국립공주박물관</a></li>
+                         <li><a href="http://jinju.museum.go.kr/" target="_blank" title="새창으로 열림">국립진주박물관</a></li>
+                         <li><a href="http://cheongju.museum.go.kr/" target="_blank" title="새창으로 열림">국립청주박물관</a></li>
+                         <li><a href="http://gimhae.museum.go.kr/" target="_blank" title="새창으로 열림">국립김해박물관</a></li>
+                         <li><a href="http://jeju.museum.go.kr/" target="_blank" title="새창으로 열림">국립제주박물관</a></li>
+                         <li><a href="http://chuncheon.museum.go.kr/" target="_blank" title="새창으로 열림">국립춘천박물관</a></li>
+                         <li><a href="http://naju.museum.go.kr/" target="_blank" title="새창으로 열림">국립나주박물관</a></li>
+                         <li><a href="http://iksan.museum.go.kr/" target="_blank" title="새창으로 열림">국립익산박물관</a></li>
+                     </ul>
+                   </div>
+ 
+                   <div class="familysite guideBook">
+                     <a href="https://www.museum.go.kr/site/main/home#" class="btn-site" title="닫힘"><span>안내도(PDF) 내려받기</span></a>
+                     <ul class="linkList">
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/jw1glB_HIQK573a2_IFX_g==" title="한국어(PDF) download">한국어(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/ILHmNkltBzBnupJVBcOXcw==" title="English(PDF) download">English(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/YhZk2Y0mcGSDgegATKWO7Q==" title="中文(PDF) download">中文(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/diF597vFg0IT5exDrarwgw==" title="日本語(PDF) download">日本語(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/P48E49A6hJLQBMSiR5wI6Q==" title="Русский(PDF) download">Русский(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/tLZPGEC2ZZHvlmofQYvvCg==" title="Français(PDF) download">Français(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/nU7HOt7E5vwo9BfzO4w8jg==" title="Deutsche(PDF) download">Deutsche(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/iSGGvWG3gIs_Qpwvb2AkRw==" title="Tiếng Việt(PDF) download">Tiếng Việt(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/_I6SFP9YSeDux43GdlcmgA==" title="Español(PDF) download">Español(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/Dh9qgVs27yIaANeYC7fVZQ==" title="العربية(PDF) download">العربية(PDF)</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/_xnmeo7swwjtMkyTPfTDdA==" title="박물관 야외정원 안내">박물관 야외정원 안내</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/vREdhLoKKhYSH2TnMOzRew==" title="Recommended Routes">Recommended Routes</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/d91gVQevFEXQBKUbZkhNmQ==" title="推荐路线">推荐路线</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/ZXOTeBmOxAOFoHEKHnMQQg==" title="おすすめ散策コース">おすすめ散策コース</a></li>
+                         <li><a href="https://www.museum.go.kr/site/main/filedown/2YuL3NRoEDE63F6gDWEUjA==" title="프로그램(2월~4월)">프로그램(2월~4월)</a></li>
+                     </ul>
+                   </div>
+                   
+                   <div class="familysite" id="newsletter">
+                     <a href="https://www.museum.go.kr/site/main/home#" class="btn-site" title="닫힘"><span>소속박물관 뉴스레터</span></a>
+                     <ul class="linkList">
+                         <li><a href="https://gyeongju.museum.go.kr/site/kor/html/sub07/0706.html" target="_blank" title="새창으로 열림">국립경주박물관</a></li>
+                         <li><a href="https://gwangju.museum.go.kr/prog/bbsArticle/BBSMSTR_000000000333/list.do" target="_blank" title="새창으로 열림">국립광주박물관</a></li>
+                         <li><a href="https://jeonju.museum.go.kr/board.es?mid=a10105030000&amp;bid=0003" target="_blank" title="새창으로 열림">국립전주박물관</a></li>
+                         <li><a href="https://daegu.museum.go.kr/bbs/BBSMSTR_000000000305/list.do" target="_blank" title="새창으로 열림">국립대구박물관</a></li>
+                         <li><a href="https://buyeo.museum.go.kr/bbs/list.do?key=2302150025" target="_blank" title="새창으로 열림">국립부여박물관</a></li>
+                         <li><a href="https://gongju.museum.go.kr/gongju/html/sub5/0505.html" target="_blank" title="새창으로 열림">국립공주박물관</a></li>
+                         <li><a href="https://jinju.museum.go.kr/kor/html/sub06/060301.html" target="_blank" title="새창으로 열림">국립진주박물관</a></li>
+                         <li><a href="https://cheongju.museum.go.kr/www/selectWebznList.do?key=351&amp;nbar=s" target="_blank" title="새창으로 열림">국립청주박물관</a></li>
+                         <li><a href="https://chuncheon.museum.go.kr/prog/newsletr/kor/sub01_0103/list.do" target="_blank" title="새창으로 열림">국립춘천박물관</a></li>
+                         <li><a href="https://naju.museum.go.kr/bbs/BBSMSTR_000000000175/list.do" target="_blank" title="새창으로 열림">국립나주박물관</a></li>
+                         <li><a href="https://iksan.museum.go.kr/kor/html/sub05/0504.html" target="_blank" title="새창으로 열림">국립익산박물관</a></li>
+                     </ul>
+                   </div>
+                </div>
+                <div class="link-box">
+                    <ul class="foot-link">
+                        <li><strong><a href="https://www.museum.go.kr/site/main/content/privacy_policy" style="text-decoration:underline;">개인정보처리방침</a></strong></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/media_policy">영상정보처리기기 운영·관리 규정</a></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/access_terms">이용약관</a></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/online_complaint">전자민원</a></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/public_data_applications">공공데이터개방</a></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/copyright_policy">저작권정책</a></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/clean_report_center">클린신고센터</a></li>
+                        <li><a href="https://www.museum.go.kr/site/main/content/subway">찾아오시는길</a></li>
+                    </ul>
+                </div>
+                <div class="link-box right-link-box">
+                    <div class="sns-link">
+                        <ul>
+                             <li>
+                                 <a href="https://blog.naver.com/100museum" target="_blank" title="국립중앙박물관 네이버 블로그 새 창으로 열림" class="naver">
+                                     <img src="./국립중앙박물관_files/naver.svg" alt="블로그">
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="https://twitter.com/The_NMK" target="_blank" title="국립중앙박물관 X 새 창으로 열림" class="twitter">
+                                     <img src="./국립중앙박물관_files/twitter.svg" alt="X">
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="https://www.facebook.com/NationalMuseumofKorea/" target="_blank" title="국립중앙박물관 페이스북 새 창으로 열림" class="facebook">
+                                     <img src="./국립중앙박물관_files/facebook.svg" alt="페이스북">
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="https://www.instagram.com/nationalmuseumofkorea/" target="_blank" title="국립중앙박물관 인스타그램 새 창으로 열림" class="instagram">
+                                     <img src="./국립중앙박물관_files/instagram.svg" alt="인스타그램">
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="https://www.youtube.com/user/koreanmuseum" target="_blank" title="국립중앙박물관 유튜브 새 창으로 열림" class="youtube">
+                                     <img src="./국립중앙박물관_files/youtube.svg" alt="유튜브">
+                                 </a>
+                             </li>
+                             <li>
+                                 <a href="https://audioclip.naver.com/channels/2320" target="_blank" title="국립중앙박물관 네이버 오디오클립 새 창으로 열림" class="audioclip">
+                                     <img src="./국립중앙박물관_files/audioclip.svg" alt="오디오클립">
+                                 </a>
+                             </li>
+                        </ul>
+                    </div>
+                    <div class="m-link-box">
+                        <ul class="m-foot-link">
+                            <li><strong><a href="https://www.museum.go.kr/site/main/content/privacy_policy" style="text-decoration:underline;">개인정보처리방침</a></strong></li>
+                            <li><a href="https://www.museum.go.kr/site/main/content/access_terms">이용약관</a></li>
+                            <li><a href="https://www.museum.go.kr/site/main/content/subway">찾아오시는길</a></li>
+                        </ul>
+                    </div>
+ 
+                    <p class="address">04383  서울시 용산구  서빙고로 137(용산동6가 168-6)<br>대표전화 <a href="tel:02-2077-9000" style="color:#444;">02-2077-9000</a></p>
+                    <p class="copyright">© National Museum of Korea.</p>
+                    <ul class="otherban">
+                         <li><a title="새창으로 열림" href="https://www.museum.go.kr/web_access.html" target="_blank"><img class="wa" alt="(사)한국장애인단체총연합회 한국웹접근성인증평가원 웹 접근성 우수사이트 인증마크(WA인증마크)" src="./국립중앙박물관_files/web_access.png" width="4" height="2.8"></a></li>
+                         <li><a href="https://www.kogl.or.kr/" target="_blank" title="새창으로 열림"><img src="./국립중앙박물관_files/logo_open.png" alt="OPEN 공공누리 공공저작물 자유이용허락 "></a></li>
+                     </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
